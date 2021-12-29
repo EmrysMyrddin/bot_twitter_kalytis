@@ -2,6 +2,9 @@ import fetch from 'node-fetch'
 import express from 'express'
 import _ from 'lodash'
 
+import messages from "./messages";
+import footer from "./footer";
+
 const app = express()
 
 const ONE_GRAPH_SECRET_KEY = process.env.ONE_GRAPH_SECRET_KEY
@@ -9,33 +12,10 @@ const ONE_GRAPH_URL = process.env.ONE_GRAPH_URL
 const PORT = Number(process.env.PORT || '4000')
 
 let lastMessage = null
-const messages = [
-  'Non.',
-  'Bien sûre que non.',
-  'Toujours pas.',
-  'La réponse est non.',
-  "C'est non.",
-  "Je... non.",
-  "Oui !\n\n\n Non je rigole.",
-  "Nope",
-  "C'est pas pour aujourd'hui (et sûrement pas demain non plus)",
-  "Évitons les questions qui fâchent",
-  "Je serais encore la demain",
-  "C'est pour bientôt ! (non)",
-]
 
 const message = () =>`${
   lastMessage = _.without(messages, lastMessage)[Math.floor(Math.random() * (messages.length -1))]
-}
-@Covage_News
-
-@CovageIDF_OUEST
-@orange
-@Orange_conseil
-@60millions
-@UFCquechoisir
-@Kalytis_
-`
+}${footer}`
 
 app.all('/tweet', async (req, res) => {
   const status = message()
