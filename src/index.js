@@ -2,8 +2,8 @@ import fetch from 'node-fetch'
 import express from 'express'
 import _ from 'lodash'
 
-import messages from "./messages";
-import footer from "./footer";
+import messages from "./messages.js";
+import footer from "./footer.js";
 
 const app = express()
 
