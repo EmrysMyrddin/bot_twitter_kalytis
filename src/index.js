@@ -18,6 +18,8 @@ const message = () =>`${
 }${footer}`
 
 app.all('/tweet', async (req, res) => {
+  if(req.headers.authorization !== process.env.AUTHORIZATION_KEY) return res.status(403).send()
+  
   const status = message()
   console.log(status)
   const result = await query({
